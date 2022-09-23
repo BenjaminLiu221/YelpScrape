@@ -1,7 +1,7 @@
 # YelpScrape v1
 
 ## Objective
-This is a website to showcase proxying GraphQL apis.
+This is a website to showcase proxying GraphQL apis. It includes client-side form submission to imitate a client specifying data.
 
 ## Why GraphQL?
 GraphQL is very useful in that it allows the client to make the request for exactly the data they need. This also allows for the data to be aggregated in a single query for the client which reduces performance issues.
