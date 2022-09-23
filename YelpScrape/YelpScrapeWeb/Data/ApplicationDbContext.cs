@@ -7,7 +7,6 @@ namespace YelpScrapeWeb.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
         }
         public DbSet<Authorization> Authorizations { get; set; }
     }

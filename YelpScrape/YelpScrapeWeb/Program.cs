@@ -3,9 +3,11 @@ using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using Microsoft.EntityFrameworkCore;
-using YelpScrapeWeb.Data;
+using YelpScrapeWeb.Models.YelpGraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
+
+ConfigureServices(builder.Services);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -36,3 +38,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddTransient<ISearchConsumer, SearchConsumer>();
+}
