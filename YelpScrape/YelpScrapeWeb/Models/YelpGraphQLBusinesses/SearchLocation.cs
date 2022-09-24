@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace YelpScrapeWeb.Models.YelpGraphQL
+namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 {
     public class SearchLocation
     {

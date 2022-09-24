@@ -3,7 +3,7 @@ using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using Microsoft.EntityFrameworkCore;
-using YelpScrapeWeb.Models.YelpGraphQL;
+using YelpScrapeWeb.Models.YelpGraphQLBusinesses;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,4 +42,5 @@ app.Run();
 void ConfigureServices(IServiceCollection services)
 {
     services.AddTransient<ISearchConsumer, SearchConsumer>();
+    services.AddTransient<ISearchResultsConsumer, SearchResultsConsumer>();
 }
