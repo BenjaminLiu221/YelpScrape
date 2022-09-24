@@ -13,7 +13,7 @@
                     <h2 class="text-primary">YelpGraphQL Api Scrape</h2>
                     <hr />
                     <h5>Instructions</h5>
-                    <p>Search businesses by location.</p>
+                    <p>Search businesses by filling in fields.</p>
                 </div>
                 <div class="mb-3">
                     <label asp-for="@Model.SearchLocation.Location">Enter Location Here</label>
@@ -38,6 +38,9 @@
                         <p>@Html.Raw(businessObj.Name)</p>
                     </div>
                 }
+                <a asp-controller="Businesses" asp-action="Search" class="btn btn-secondary" style="width:175px">
+                    Back to Search
+                </a>
             }
         }
     </div>
