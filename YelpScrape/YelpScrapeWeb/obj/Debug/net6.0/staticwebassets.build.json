@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ysm84hWJj12oAUIegOOWrgQC2K1tyq2rFAL5wiKHXmM=",
+  "Hash": "KEMk5WbJZoWWqlVbJqqCxTcpb66VO/yg+H8lkuFhARg=",
   "Source": "YelpScrapeWeb",
   "BasePath": "_content/YelpScrapeWeb",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\benja\\Documents\\Projects\\YelpScrape\\YelpScrape\\YelpScrapeWeb\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\YelpScrapeWeb.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\benja\\Documents\\Projects\\YelpScrape\\YelpScrape\\YelpScrapeWeb\\wwwroot\\css\\bootswatchTheme.css",
+      "SourceId": "YelpScrapeWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\benja\\Documents\\Projects\\YelpScrape\\YelpScrape\\YelpScrapeWeb\\wwwroot\\",
+      "BasePath": "_content/YelpScrapeWeb",
+      "RelativePath": "css/bootswatchTheme.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\bootswatchTheme.css"
     },
     {
       "Identity": "C:\\Users\\benja\\Documents\\Projects\\YelpScrape\\YelpScrape\\YelpScrapeWeb\\wwwroot\\css\\site.css",

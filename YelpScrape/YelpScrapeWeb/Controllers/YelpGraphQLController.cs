@@ -18,7 +18,7 @@ namespace YelpScrapeWeb.Controllers
         }
 
         [HttpPost]
-        //[Route("api/{controller}/{action}")]
+        // SearchBusiness
         public async Task<IActionResult> Search(SearchLocation searchLocation)
         {
             var businesses = await _consumer.GetAllBusinesses(searchLocation);
