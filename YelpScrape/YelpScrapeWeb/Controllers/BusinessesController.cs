@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using YelpScrapeWeb.Models.YelpGraphQL;
+using YelpScrapeWeb.Models.YelpGraphQLBusinesses;
 
 namespace YelpScrapeWeb.Controllers
 {
     public class BusinessesController : Controller
     {
-        private readonly ISearchConsumer _consumer;
+        private readonly ISearchConsumer _searchConsumer;
+        private readonly ISearchResultsConsumer _searchResultsConsumer;
 
-        public BusinessesController(ISearchConsumer consumer)
+        public BusinessesController(ISearchConsumer searchConsumer, ISearchResultsConsumer searchResultsConsumer)
         {
-            _consumer = consumer;
+            _searchConsumer = searchConsumer;
+            _searchResultsConsumer = searchResultsConsumer;
         }
 
         public IActionResult Search()
@@ -25,14 +27,11 @@ namespace YelpScrapeWeb.Controllers
             {
                 return View();
             }
-            var businesses = await _consumer.GetAllBusinesses(searchLocation);
-            SearchResults searchResults = new SearchResults()
-            {
-                Businesses = businesses,
-                SearchLocation = searchLocation
-            };
-            //return Ok(businesses);
-            return View(searchResults);
+
+            var businesses = await _searchConsumer.GetAllBusinesses(searchLocation);
+            var searchResultsObj = _searchResultsConsumer.CreateSearchResults(searchLocation, businesses);
+
+            return View(searchResultsObj);
         }
     }
 }

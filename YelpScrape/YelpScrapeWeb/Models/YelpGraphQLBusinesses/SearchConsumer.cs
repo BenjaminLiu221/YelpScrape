@@ -4,7 +4,7 @@ using GraphQL.Client.Serializer.Newtonsoft;
 using System.Net.Http.Headers;
 using YelpScrapeWeb.Data;
 
-namespace YelpScrapeWeb.Models.YelpGraphQL
+namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 {
     public interface ISearchConsumer
     {

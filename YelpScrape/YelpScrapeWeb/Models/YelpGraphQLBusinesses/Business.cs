@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace YelpScrapeWeb.Models.YelpGraphQL
+namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 {
     public class Business
     {
