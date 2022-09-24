@@ -8,7 +8,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQL
 {
     public interface ISearchConsumer
     {
-        public Task<List<Business>> GetAllBusinesses();
+        public Task<List<Business>> GetAllBusinesses(SearchLocation searchLocation);
     }
     public class SearchConsumer : ISearchConsumer
     {
@@ -19,11 +19,16 @@ namespace YelpScrapeWeb.Models.YelpGraphQL
             _dbContext = dbContext;
         }
 
-        public async Task<List<Business>> GetAllBusinesses()
+        public async Task<List<Business>> GetAllBusinesses(SearchLocation searchLocation)
         {
             var authorization = _dbContext.Authorizations.FirstOrDefault().Token;
             var _client = new GraphQLHttpClient("https://api.yelp.com/v3/graphql", new NewtonsoftJsonSerializer());
             _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authorization);
+            string location = "";
+            if (searchLocation != null)
+            {
+                location = searchLocation.Location;
+            }
             var query = new GraphQLRequest
             {
                 Query = @"
@@ -38,7 +43,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQL
                 Variables = new
                 {
                     termId = "burrito",
-                    locationId = "san francisco"
+                    locationId = location
                 }
             };
             var response = await _client.SendQueryAsync<SearchResponseType>(query);

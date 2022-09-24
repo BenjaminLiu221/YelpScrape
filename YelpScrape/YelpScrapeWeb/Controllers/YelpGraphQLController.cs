@@ -12,17 +12,23 @@ namespace YelpScrapeWeb.Controllers
             _consumer = consumer;
         }
 
-        public IActionResult Index()
+        public IActionResult Search()
         {
             return View();
         }
 
-        [HttpGet]
-        [Route("api/{controller}/{action}")]
-        public async Task<IActionResult> Get()
+        [HttpPost]
+        //[Route("api/{controller}/{action}")]
+        public async Task<IActionResult> Search(SearchLocation searchLocation)
         {
-            var businesses = await _consumer.GetAllBusinesses();
-            return Ok(businesses);
+            var businesses = await _consumer.GetAllBusinesses(searchLocation);
+            SearchResults searchResults = new SearchResults()
+            {
+                Businesses = businesses,
+                SearchLocation = searchLocation
+            };
+            //return Ok(businesses);
+            return View(searchResults);
         }
     }
 }
