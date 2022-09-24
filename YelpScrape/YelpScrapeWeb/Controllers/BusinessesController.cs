@@ -21,15 +21,15 @@ namespace YelpScrapeWeb.Controllers
 
         [HttpPost]
         // SearchBusiness
-        public async Task<IActionResult> Search(SearchLocation searchLocation)
+        public async Task<IActionResult> Search(SearchArguments searchArguments)
         {
             if (!this.ModelState.IsValid)
             {
                 return View();
             }
 
-            var businesses = await _searchConsumer.GetAllBusinesses(searchLocation);
-            var searchResultsObj = _searchResultsConsumer.CreateSearchResults(searchLocation, businesses);
+            var businesses = await _searchConsumer.GetAllBusinesses(searchArguments);
+            var searchResultsObj = _searchResultsConsumer.CreateSearchResults(searchArguments, businesses);
 
             return View(searchResultsObj);
         }

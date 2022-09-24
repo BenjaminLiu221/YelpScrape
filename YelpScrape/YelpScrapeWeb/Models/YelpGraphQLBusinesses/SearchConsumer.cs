@@ -8,7 +8,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 {
     public interface ISearchConsumer
     {
-        public Task<List<Business>> GetAllBusinesses(SearchLocation searchLocation);
+        public Task<List<Business>> GetAllBusinesses(SearchArguments searchLocation);
     }
     public class SearchConsumer : ISearchConsumer
     {
@@ -19,16 +19,31 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
             _dbContext = dbContext;
         }
 
-        public async Task<List<Business>> GetAllBusinesses(SearchLocation searchLocation)
+        public async Task<List<Business>> GetAllBusinesses(SearchArguments searchArguments)
         {
             var authorization = _dbContext.Authorizations.FirstOrDefault().Token;
             var _client = new GraphQLHttpClient("https://api.yelp.com/v3/graphql", new NewtonsoftJsonSerializer());
             _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authorization);
+
             string location = "";
-            if (searchLocation != null)
+            string term = "";
+            string price = "";
+
+            if (searchArguments.Location != null)
             {
-                location = searchLocation.Location;
+                location = searchArguments.Location;
             }
+
+            if (searchArguments.Term != null)
+            {
+                term = searchArguments.Term;
+            }
+
+            if (searchArguments.Price != null)
+            {
+                price = searchArguments.Price;
+            }
+
             var query = new GraphQLRequest
             {
                 Query = @"
@@ -37,13 +52,18 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                         business {
                             id
                             name
+                            rating
+                            review_count
+                            price
+                            display_phone
                         }
                     }
                 }",
                 Variables = new
                 {
-                    termId = "burrito",
-                    locationId = location
+                    termId = term,
+                    locationId = location,
+                    price = price
                 }
             };
             var response = await _client.SendQueryAsync<SearchResponseType>(query);
