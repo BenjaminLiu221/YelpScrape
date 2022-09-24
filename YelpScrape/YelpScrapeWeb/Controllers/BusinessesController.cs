@@ -3,11 +3,11 @@ using YelpScrapeWeb.Models.YelpGraphQL;
 
 namespace YelpScrapeWeb.Controllers
 {
-    public class YelpGraphQLController : Controller
+    public class BusinessesController : Controller
     {
         private readonly ISearchConsumer _consumer;
 
-        public YelpGraphQLController(ISearchConsumer consumer)
+        public BusinessesController(ISearchConsumer consumer)
         {
             _consumer = consumer;
         }
@@ -21,6 +21,10 @@ namespace YelpScrapeWeb.Controllers
         // SearchBusiness
         public async Task<IActionResult> Search(SearchLocation searchLocation)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return View();
+            }
             var businesses = await _consumer.GetAllBusinesses(searchLocation);
             SearchResults searchResults = new SearchResults()
             {
