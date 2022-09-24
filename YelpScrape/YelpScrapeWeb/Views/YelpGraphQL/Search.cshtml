@@ -1,0 +1,44 @@
+﻿@using YelpScrapeWeb.Models.YelpGraphQL
+@model SearchResults
+@{
+    ViewData["Title"] = "Search";
+}
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        @{
+            if (@Model == null)
+            {
+                <div class="row pb-2">
+                    <h2 class="text-primary">YelpGraphQL Api Scrape</h2>
+                    <hr />
+                    <h5>Instructions</h5>
+                    <p>Use the location field to search for businesses.</p>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.SearchLocation.Location">Enter Location Here</label>
+                    <input asp-for="@Model.SearchLocation.Location" class="form-control" />
+                    <span asp-validation-for="@Model.SearchLocation.Location" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-warning" style="width:175px">Search</button>
+            }
+        }
+
+        @{
+            if (@Model != null)
+            {
+                <div class="row pb-2">
+                    <h2 class="text-primary">YelpGraphQL Api Scrape</h2>
+                    <hr />
+                    <h5>Businesses</h5>
+                </div>
+                foreach (var businessObj in @Model.Businesses)
+                {
+                    <div>
+                        <p>@Html.Raw(businessObj.Name)</p>
+                    </div>
+                }
+            }
+        }
+    </div>
+</form>
