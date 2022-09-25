@@ -7,6 +7,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
         [Required(ErrorMessage = "Location is required")]
         public string Location { get; set; }
         public string? Term { get; set; }
-        public string? Price { get; set; }
+        [Range(1,4)]
+        public int? Price { get; set; }
     }
 }
