@@ -2,7 +2,7 @@
 
 namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 {
-    public class SearchArguments
+    public class SearchBusinessesArguments
     {
         [Required(ErrorMessage = "Location is required")]
         public string Location { get; set; }

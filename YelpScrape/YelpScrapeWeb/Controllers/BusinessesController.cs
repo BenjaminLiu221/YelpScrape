@@ -5,13 +5,13 @@ namespace YelpScrapeWeb.Controllers
 {
     public class BusinessesController : Controller
     {
-        private readonly ISearchConsumer _searchConsumer;
-        private readonly ISearchResultsConsumer _searchResultsConsumer;
+        private readonly ISearchBusinessesConsumer _searchBusinessesConsumer;
+        private readonly ISearchBusinessesResultsConsumer _searchBusinessesResultsConsumer;
 
-        public BusinessesController(ISearchConsumer searchConsumer, ISearchResultsConsumer searchResultsConsumer)
+        public BusinessesController(ISearchBusinessesConsumer searchBusinessesConsumer, ISearchBusinessesResultsConsumer searchBusinessesResultsConsumer)
         {
-            _searchConsumer = searchConsumer;
-            _searchResultsConsumer = searchResultsConsumer;
+            _searchBusinessesConsumer = searchBusinessesConsumer;
+            _searchBusinessesResultsConsumer = searchBusinessesResultsConsumer;
         }
 
         public IActionResult Search()
@@ -21,15 +21,15 @@ namespace YelpScrapeWeb.Controllers
 
         [HttpPost]
         // SearchBusiness
-        public async Task<IActionResult> Search(SearchArguments searchArguments)
+        public async Task<IActionResult> Search(SearchBusinessesArguments searchBusinessesArguments)
         {
             if (!this.ModelState.IsValid)
             {
                 return View();
             }
 
-            var businesses = await _searchConsumer.GetAllBusinesses(searchArguments);
-            var searchResultsObj = _searchResultsConsumer.CreateSearchResults(searchArguments, businesses);
+            var businesses = await _searchBusinessesConsumer.GetAllBusinesses(searchBusinessesArguments);
+            var searchResultsObj = _searchBusinessesResultsConsumer.CreateSearchResults(searchBusinessesArguments, businesses);
 
             return View(searchResultsObj);
         }
