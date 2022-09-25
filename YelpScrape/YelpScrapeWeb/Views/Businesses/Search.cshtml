@@ -40,18 +40,21 @@
                 <div>
                     <h2 class="text-primary">YelpGraphQL Api Scrape</h2>
                     <hr />
-                    <h5>Businesses</h5>
+                    <h3>Businesses</h3>
 
                     @foreach (var businessObj in @Model.Businesses)
                     {
-                        <div class="d-grid" style="padding:1rem">
-                            <p>Name: @Html.Raw(businessObj.Name)</p>
-                            <p>Rating: @Html.Raw(businessObj.Rating)</p>
-                            <p>Reviews Count: @Html.Raw(businessObj.Review_Count)</p>
-                            <p>Price: @Html.Raw(businessObj.Price)</p>
-                            <p>Phone: @Html.Raw(businessObj.Display_Phone)</p>
-                        </div>
+                        <div class="card text-black bg-info mb-3" style="width:50%;padding:0.5rem;">
+                          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                            <p style="padding-left:0.5rem">Name: @Html.Raw(businessObj.Name)</p>
+                            <p style="padding-left:0.5rem">Rating: @Html.Raw(businessObj.Rating)</p>
+                            <p style="padding-left:0.5rem">Reviews Count: @Html.Raw(businessObj.Review_Count)</p>
+                            <p style="padding-left:0.5rem">Price: @Html.Raw(businessObj.Price)</p>
+                            <p style="padding-left:0.5rem">Phone: @Html.Raw(businessObj.Display_Phone)</p>
+                          </a>
+                        </div>                        
                     }
+
                 </div>
                 <a asp-controller="Businesses" asp-action="Search" class="btn btn-secondary" style="width:175px">
                     Back to Search
