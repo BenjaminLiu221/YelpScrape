@@ -41,7 +41,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 
             if (searchBusinessesArguments.Price != null)
             {
-                price = searchBusinessesArguments.Price;
+                price = searchBusinessesArguments.Price.ToString();
             }
 
             var query = new GraphQLRequest
