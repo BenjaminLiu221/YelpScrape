@@ -6,20 +6,20 @@ using YelpScrapeWeb.Data;
 
 namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 {
-    public interface ISearchConsumer
+    public interface ISearchBusinessesConsumer
     {
-        public Task<List<Business>> GetAllBusinesses(SearchArguments searchLocation);
+        public Task<List<Business>> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments);
     }
-    public class SearchConsumer : ISearchConsumer
+    public class SearchBusinessesConsumer : ISearchBusinessesConsumer
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public SearchConsumer(ApplicationDbContext dbContext)
+        public SearchBusinessesConsumer(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<List<Business>> GetAllBusinesses(SearchArguments searchArguments)
+        public async Task<List<Business>> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments)
         {
             var authorization = _dbContext.Authorizations.FirstOrDefault().Token;
             var _client = new GraphQLHttpClient("https://api.yelp.com/v3/graphql", new NewtonsoftJsonSerializer());
@@ -29,19 +29,19 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
             string term = "";
             string price = "";
 
-            if (searchArguments.Location != null)
+            if (searchBusinessesArguments.Location != null)
             {
-                location = searchArguments.Location;
+                location = searchBusinessesArguments.Location;
             }
 
-            if (searchArguments.Term != null)
+            if (searchBusinessesArguments.Term != null)
             {
-                term = searchArguments.Term;
+                term = searchBusinessesArguments.Term;
             }
 
-            if (searchArguments.Price != null)
+            if (searchBusinessesArguments.Price != null)
             {
-                price = searchArguments.Price;
+                price = searchBusinessesArguments.Price;
             }
 
             var query = new GraphQLRequest
