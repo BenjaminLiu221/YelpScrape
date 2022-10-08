@@ -67,6 +67,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                 }
             };
             var response = await _client.SendQueryAsync<SearchResponseType>(query);
+            //If broken, StatusCode500 most likely. search query breaks. reviews that I've seen
             var businesses = response.Data.Search.business;
             return businesses;
         }
