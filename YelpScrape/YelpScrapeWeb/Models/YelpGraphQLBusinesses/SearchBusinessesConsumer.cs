@@ -66,7 +66,11 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                     price = price
                 }
             };
+            // Test if response is http request timeout here.
+
+            var testResponse = Task.Run(async () => await _client.SendQueryAsync<SearchResponseType>(query)).Result;
             var response = await _client.SendQueryAsync<SearchResponseType>(query);
+            //If broken, StatusCode500 most likely. search query breaks. reviews that I've seen
             var businesses = response.Data.Search.business;
             return businesses;
         }
