@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAf7fM5gC+Pkut32aJvfpCUQAAAAACAAAAAAAQZgAAAAEAACAAAAATRnKXaA7lMmduEPZRPwz5gnyz89M2k7s3H0GhJQKvJgAAAAAOgAAAAAIAACAAAADv81ZJRo/YWMP/+yrmXCqEJtrKQV/UTEXA+4lczYBuMIAAAADEBk+6SoIFrACb0s7PAKGFNSU/gr5NmU4hGy8gRA8rWbJMK2bc7pRNltSjwVXkOR9tUIxARXn+PB2nO33iy0V/9NIlSKw869+mw4e7XQCTRNDweuRl4c/h4aRnvAYCcpUkBQIy6C0aWTQDpQlY3vmdPJN4qOQvCulv52o8q8vAI0AAAADrnSe4UHFhYYoCZtFnSNZm6+n8oIIlhWstXdoF1m7M42vJaM8rj7K6fJ5jlAOO9wAT6E9GeF4In148ONe1m1RI</EncryptedPassword>
+    <History>True|2022-10-13T04:01:54.3765788Z;False|2022-10-12T21:01:28.0879962-07:00;True|2022-10-12T20:59:51.7612496-07:00;True|2022-10-12T19:56:04.0836921-07:00;True|2022-10-12T19:30:50.6906551-07:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:yelpscrapeserver.database.windows.net,1433%3bInitial Catalog=yelpscrape_db%3bPersist Security Info=False%3bUser ID=admin%40yelpscrape.com%40yelpscrapeserver%3bPassword=Admin%40123&amp;%2a%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
