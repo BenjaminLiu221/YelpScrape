@@ -12,7 +12,7 @@
             SearchBusinessesResults searchBusinessesResultsObj = new SearchBusinessesResults()
             {
                 Businesses = businesses,
-                SearchBusinessesArguments = searchBusinessesArguments
+                SearchBusinessesArguments = searchBusinessesArguments,
             };
             return searchBusinessesResultsObj;
         }

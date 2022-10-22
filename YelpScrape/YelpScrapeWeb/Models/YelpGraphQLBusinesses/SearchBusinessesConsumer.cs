@@ -28,6 +28,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
             string location = "";
             string term = "";
             string price = "";
+            int offset = 0;
 
             if (searchBusinessesArguments.Location != null)
             {
@@ -44,11 +45,16 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                 price = searchBusinessesArguments.Price.ToString();
             }
 
+            if (searchBusinessesArguments.OffSet.HasValue)
+            {
+                offset = searchBusinessesArguments.OffSet.GetValueOrDefault();
+            }
+
             var query = new GraphQLRequest
             {
                 Query = @"
-                query($termId: String $locationId: String){
-                    search(term:$termId location:$locationId) {
+                query($termId: String $locationId: String $priceId: String $offSetId: Int){
+                    search(term:$termId location:$locationId price:$priceId offset:$offSetId) {
                         business {
                             id
                             name
@@ -63,7 +69,8 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                 {
                     termId = term,
                     locationId = location,
-                    price = price
+                    priceId = price,
+                    offSetId = offset
                 }
             };
             // Test if response is http request timeout here.
