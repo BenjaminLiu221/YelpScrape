@@ -1,0 +1,47 @@
+﻿@using YelpScrapeWeb.Models.YelpGraphQLBusinesses
+@model SearchBusinessesResults
+
+<div class="border p-3 mt-4">
+    <div>
+        <h2 class="text-primary">YelpGraphQL Api Scrape</h2>
+        <hr />
+        <h3>Businesses</h3>
+
+        <input type="hidden" asp-for="@Model.SearchBusinessesArguments.Location" class="form-control" />
+        <input type="hidden" asp-for="@Model.SearchBusinessesArguments.Term" class="form-control" />
+        <input type="hidden" asp-for="@Model.SearchBusinessesArguments.Price" class="form-control" />
+        @*<input asp-for="@Model.SearchBusinessesArguments.OffSet" class="form-control" />*@
+
+        @foreach (var businessObj in @Model.Businesses)
+        {
+            <div class="card text-black bg-info mb-3" style="width:50%;padding:0.5rem;">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                <p style="padding-left:0.5rem">Id: @Html.Raw(businessObj.Id)</p>
+                <p style="padding-left:0.5rem">Name: @Html.Raw(businessObj.Name)</p>
+                <p style="padding-left:0.5rem">Rating: @Html.Raw(businessObj.Rating)</p>
+                <p style="padding-left:0.5rem">Reviews Count: @Html.Raw(businessObj.Review_Count)</p>
+                <p style="padding-left:0.5rem">Price: @Html.Raw(businessObj.Price)</p>
+                <p style="padding-left:0.5rem">Phone: @Html.Raw(businessObj.Display_Phone)</p>
+                </a>
+            </div>                        
+        }
+
+    </div>
+    <a asp-controller="Businesses" asp asp-action="Search" class="btn btn-secondary" style="width:175px">
+        Back to Search
+    </a>
+
+    @foreach (var pair in @Model.Paging)
+    {
+        <a 
+            asp-controller="Businesses" 
+            asp-action="GetBusinesses" 
+            asp-route-Location=@Model.SearchBusinessesArguments.Location 
+            asp-route-Term=@Model.SearchBusinessesArguments.Term 
+            asp-route-Price=@Model.SearchBusinessesArguments.Price 
+            asp-route-offset=@pair.Value
+            class="btn btn-secondary" style="width:50px">
+            @pair.Key
+        </a> 
+    }
+</div>
