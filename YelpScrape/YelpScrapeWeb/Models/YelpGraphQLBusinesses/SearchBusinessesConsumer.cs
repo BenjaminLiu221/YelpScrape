@@ -45,11 +45,6 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                 price = searchBusinessesArguments.Price.ToString();
             }
 
-            //if (searchBusinessesArguments.OffSet.HasValue)
-            //{
-            //    offset = searchBusinessesArguments.OffSet.GetValueOrDefault();
-            //}
-
             if (offset != 0)
             {
                 offsetValue = offset;
