@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\benja\Documents\Projects\YelpScrape\YelpScrape\YelpScrapeWeb
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/benja/Documents/Projects/YelpScrape/YelpScrape/YelpScrapeWeb/Views/Businesses/GetBusinesses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVzaW5lc3Nlc1xHZXRCdXNpbmVzc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/benja/Documents/Projects/YelpScrape/YelpScrape/YelpScrapeWeb/Views/Businesses/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVzaW5lc3Nlc1xTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

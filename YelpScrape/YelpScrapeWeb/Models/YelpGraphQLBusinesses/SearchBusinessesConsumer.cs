@@ -8,7 +8,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 {
     public interface ISearchBusinessesConsumer
     {
-        public Task<List<Business>> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments);
+        public Task<List<Business>> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments, int offset);
     }
     public class SearchBusinessesConsumer : ISearchBusinessesConsumer
     {
@@ -19,7 +19,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
             _dbContext = dbContext;
         }
 
-        public async Task<List<Business>> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments)
+        public async Task<List<Business>> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments, int offset)
         {
             var authorization = _dbContext.Authorizations.FirstOrDefault().Token;
             var _client = new GraphQLHttpClient("https://api.yelp.com/v3/graphql", new NewtonsoftJsonSerializer());
@@ -28,7 +28,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
             string location = "";
             string term = "";
             string price = "";
-            int offset = 0;
+            int offsetValue = 0;
 
             if (searchBusinessesArguments.Location != null)
             {
@@ -45,9 +45,9 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                 price = searchBusinessesArguments.Price.ToString();
             }
 
-            if (searchBusinessesArguments.OffSet.HasValue)
+            if (offset != 0)
             {
-                offset = searchBusinessesArguments.OffSet.GetValueOrDefault();
+                offsetValue = offset;
             }
 
             var query = new GraphQLRequest
@@ -70,7 +70,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                     termId = term,
                     locationId = location,
                     priceId = price,
-                    offSetId = offset
+                    offSetId = offsetValue
                 }
             };
             // Test if response is http request timeout here.

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using System.Web;
 using YelpScrapeWeb.Models.YelpGraphQLBusinesses;
 
 namespace YelpScrapeWeb.Controllers
@@ -28,9 +30,14 @@ namespace YelpScrapeWeb.Controllers
                 return View();
             }
 
-            var businesses = await _searchBusinessesConsumer.GetAllBusinesses(searchBusinessesArguments);
-            var searchResultsObj = _searchBusinessesResultsConsumer.CreateSearchResults(searchBusinessesArguments, businesses);
+            return RedirectToAction("GetBusinesses", searchBusinessesArguments);
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> GetBusinesses(SearchBusinessesArguments searchBusinessesArguments, int offset)
+        {
+            var businesses = await _searchBusinessesConsumer.GetAllBusinesses(searchBusinessesArguments, offset);
+            var searchResultsObj = _searchBusinessesResultsConsumer.CreateSearchResults(searchBusinessesArguments, businesses);
             return View(searchResultsObj);
         }
     }

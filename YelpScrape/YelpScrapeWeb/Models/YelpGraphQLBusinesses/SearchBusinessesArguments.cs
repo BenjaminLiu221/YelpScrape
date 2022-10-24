@@ -10,6 +10,6 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
         public string? Term { get; set; }
         [Range(1,4)]
         public int? Price { get; set; }
-        public int? OffSet { get; set; }
+        public int? offset { get; set; }
     }
 }
