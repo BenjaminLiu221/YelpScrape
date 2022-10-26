@@ -8,7 +8,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
 {
     public interface ISearchBusinessesConsumer
     {
-        public Task<List<Business>> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments, int offset);
+        public Task<SearchBusinessesObject> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments, int offset);
     }
     public class SearchBusinessesConsumer : ISearchBusinessesConsumer
     {
@@ -19,7 +19,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
             _dbContext = dbContext;
         }
 
-        public async Task<List<Business>> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments, int offset)
+        public async Task<SearchBusinessesObject> GetAllBusinesses(SearchBusinessesArguments searchBusinessesArguments, int offset)
         {
             var authorization = _dbContext.Authorizations.FirstOrDefault().Token;
             var _client = new GraphQLHttpClient("https://api.yelp.com/v3/graphql", new NewtonsoftJsonSerializer());
@@ -55,6 +55,7 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
                 Query = @"
                 query($termId: String $locationId: String $priceId: String $offSetId: Int){
                     search(term:$termId location:$locationId price:$priceId offset:$offSetId) {
+                        total
                         business {
                             id
                             name
@@ -78,8 +79,15 @@ namespace YelpScrapeWeb.Models.YelpGraphQLBusinesses
             var testResponse = Task.Run(async () => await _client.SendQueryAsync<SearchResponseType>(query)).Result;
             var response = await _client.SendQueryAsync<SearchResponseType>(query);
             //If broken, StatusCode500 most likely. search query breaks. reviews that I've seen
+            var total = response.Data.Search.Total;
             var businesses = response.Data.Search.business;
-            return businesses;
+            SearchBusinessesObject searchBusinessesObj = new SearchBusinessesObject()
+            {
+                Businesses = businesses,
+                Total = total
+            };
+
+            return searchBusinessesObj;
         }
     }
 }

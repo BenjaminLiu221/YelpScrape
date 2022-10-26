@@ -36,8 +36,11 @@ namespace YelpScrapeWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBusinesses(SearchBusinessesArguments searchBusinessesArguments, int offset)
         {
-            var businesses = await _searchBusinessesConsumer.GetAllBusinesses(searchBusinessesArguments, offset);
-            var searchResultsObj = _searchBusinessesResultsConsumer.CreateSearchResults(searchBusinessesArguments, businesses);
+            var searchBusinessesObj = await _searchBusinessesConsumer.GetAllBusinesses(searchBusinessesArguments, offset);
+            var businesses = searchBusinessesObj.Businesses;
+            var total = searchBusinessesObj.Total;
+            var searchResultsObj = _searchBusinessesResultsConsumer.CreateSearchResults(searchBusinessesArguments, businesses, total);
+
             return View(searchResultsObj);
         }
     }
