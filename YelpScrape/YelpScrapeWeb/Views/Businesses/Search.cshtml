@@ -33,8 +33,21 @@
                 <div>
                     <input type="hidden" asp-for="@Model.SearchBusinessesArguments.offset" value=0 class="form-control" />
                 </div>
-                <button type="submit" class="btn btn-warning" style="width:175px">Search</button>
+                <div>
+                   <button type="submit" id="btnSubmit" class="btn btn-warning" style="width:175px">Search</button>
+                   <div class="spinner" style="display:none">
+                        <div class="center-div">
+                            <div class="inner-div">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         }
     </div>
 </form>
+
+@section Scripts{
+<script src="~/js/SearchBusinesses.js"></script>
+}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KEMk5WbJZoWWqlVbJqqCxTcpb66VO/yg+H8lkuFhARg=",
+  "Hash": "pJEPUZUemynmjcK79yKrUMbe6ZDq44b7a3YwQ4Db14I=",
   "Source": "YelpScrapeWeb",
   "BasePath": "_content/YelpScrapeWeb",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\benja\\Documents\\Projects\\YelpScrape\\YelpScrape\\YelpScrapeWeb\\wwwroot\\js\\SearchBusinesses.js",
+      "SourceId": "YelpScrapeWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\benja\\Documents\\Projects\\YelpScrape\\YelpScrape\\YelpScrapeWeb\\wwwroot\\",
+      "BasePath": "_content/YelpScrapeWeb",
+      "RelativePath": "js/SearchBusinesses.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\SearchBusinesses.js"
     },
     {
       "Identity": "C:\\Users\\benja\\Documents\\Projects\\YelpScrape\\YelpScrape\\YelpScrapeWeb\\wwwroot\\js\\site.js",

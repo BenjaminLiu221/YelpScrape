@@ -33,6 +33,8 @@
 
         @{
             int currentOffSet = Int32.Parse(@ViewContext.HttpContext.Request.Query["offset"]);
+            int count = Model.Paging.Count();
+            int highestOffset = Model.Paging[count];
         }
 
         <ul class="pagination">
@@ -94,7 +96,7 @@
                     </li>
                 }
             }
-            @if (currentOffSet == 30)
+            @if (currentOffSet == highestOffset)
             {
                 <li class="page-item disabled">
                     <a class="page-link" href="#">&laquo;</a>
